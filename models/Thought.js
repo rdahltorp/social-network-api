@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const userSchema = require('./User')
 const reactionSchema = require('./Reaction')
 
 const thoughtSchema = new Schema(
@@ -13,10 +12,11 @@ const thoughtSchema = new Schema(
         createdAt: {
             type: Date, 
             default: Date.now,
-            //Need a getter methgod to format the timestamp on query
+            //Need a getter method to format the timestamp on query
         },
         username: {
-            //Need to link this to the user that made the thought. 
+            type: String,
+            required: true,
         },
         reactions: [reactionSchema]
     }

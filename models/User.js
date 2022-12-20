@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose')
-const thoughtSchema = require('./Thought')
 
 const userSchema = new Schema(
     {
@@ -13,13 +12,14 @@ const userSchema = new Schema(
             type: String,
             required: true,
             unique: true,
-            //Need to add in email validation here. 
+            //regex email validiation
+            match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please fill a valid email address']
         },
         thoughts: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'thought'
-            }
+            },
         ],
         friends: [
             {

@@ -63,10 +63,10 @@ module.exports = {
             res.status(500).json(err);
         })
     },
-    addReaction(req, res) {
-        //Need to add code
-    },
-    deleteReaction(req, res) {
-        //Need to add code
-    }
+    // addReaction(req, res) {
+    //     //Need to add code
+    // },
+    // deleteReaction(req, res) {
+    //     //Need to add code
+    // }
 }

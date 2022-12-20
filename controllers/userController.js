@@ -52,12 +52,12 @@ module.exports = {
             .then(() => res.json({ message: "User and User's thoughts deleted!" }))
             .catch((err) => res.status(500).json(err));
     },
-    //Add user to user's friends list
-    addFriend(req, res){
-        //Need to add code
-    },
-    //Remove user from user's friends list
-    deleteFriend(req, res){
-        //Need to add code
-    },
+    // //Add user to user's friends list
+    // addFriend(req, res){
+    //     //Need to add code
+    // },
+    // //Remove user from user's friends list
+    // deleteFriend(req, res){
+    //     //Need to add code
+    // },
 }
