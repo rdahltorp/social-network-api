@@ -52,12 +52,38 @@ module.exports = {
             .then(() => res.json({ message: "User and User's thoughts deleted!" }))
             .catch((err) => res.status(500).json(err));
     },
-    // //Add user to user's friends list
-    // addFriend(req, res){
-    //     //Need to add code
-    // },
-    // //Remove user from user's friends list
-    // deleteFriend(req, res){
-    //     //Need to add code
-    // },
+    //Add user to user's friends list
+    addFriend(req, res){
+        User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $addToSet: { friends: req.params.friendId }},
+            { new: true }
+        )
+        .then((user) => {
+            !user
+                ? res.status(404).json({ message: 'No user found with that ID' })
+                : res.json('Friend added to user friend list!')
+        })
+        .catch((err) => {
+            console.log(err);
+            return res.status(500).json(err);
+        });
+    },
+    //Remove user from user's friends list
+    deleteFriend(req, res){
+        User.findByIdAndUpdate(
+            { _id: req.params.userId },
+            { $pull: { friends: req.params.friendId } },
+            { new: true }
+        )
+        .then((user) => {
+            !user
+                ? res.status(404).json({ message: 'No user found with that ID' })
+                : res.json('Friend removed from user friend list!')
+        })
+        .catch((err) => {
+            console.log(err);
+            return res.status(500).json(err);
+        });
+    },
 }
