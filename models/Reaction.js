@@ -1,4 +1,3 @@
-const { triggerAsyncId } = require('async_hooks');
 const { Schema, Types } = require('mongoose');
 
 const reactionSchema = new Schema(

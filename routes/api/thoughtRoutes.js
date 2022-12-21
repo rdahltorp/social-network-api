@@ -16,16 +16,16 @@ router.route('/')
     .post(createThought);
 
 // Get a single thought OR update a thought OR delete a Thought
-//May need to change the ':thoughtID' address
 router.route('/:thoughtId')
     .get(getSingleThought)
     .put(updateThought)
     .delete(deleteThought);
 
 // Add a reaction OR remove a reaction
-//May need to change the ':thoughtID' address
-// router.route('/:thoughtId/reactions')
-//     .post(addReaction)
-//     .deleteReaction(deleteReaction);
+router.route('/:thoughtId/reactions')
+    .post(addReaction)
+
+router.route('/:thoughtId/reactions/:reactionId')
+    .delete(deleteReaction);
 
 module.exports = router;
