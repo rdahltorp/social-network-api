@@ -9,65 +9,42 @@ connection.once('open', async () => {
     await User.deleteMany({});
     await Thought.deleteMany({});
 
-    //Should insert these test users into the user collection.
-    User.find({}).exec((err, collection) => {
-        if(collection.length === 0) {
-            User.insertMany(
-                [
-                    {
-                        username: 'testUser1',
-                        email: 't1@test.com',
-                    },
-                    {
-                        username: 'testUser2',
-                        email: 't2@test.com',
-                    },
-                    {
-                        username: 'testUser3',
-                        email: 't3@test.com',
-                    }
-                ],
-                (insertError, insertedItems) => {
-                    if (insertError) {
-                      console.log(insertError);
-                    }
-                    console.log('Inserted items:', insertedItems);
-                  }
-            )
+    const userSet = [
+        {
+            username: 'testUser1',
+            email: 't1@test.com',
+        },
+        {
+            username: 'testUser2',
+            email: 't2@test.com',
+        },
+        {
+            username: 'testUser3',
+            email: 't3@test.com',
         }
-    });
+    ]
 
-    //Should insert these test thoughts into the thought collection.
-    Thought.find({}).exec((err, collection) => {
-        if(collection.length === 0) {
-            Thought.insertMany(
-                [
-                    {
-                        thoughtText: 'This is test thought! Hi!',
-                        username: 'testUser1'
-                    },
-                    {
-                        thoughtText: 'I like to eat waffles. Also test thought!',
-                        username: 'testUser2',
-                    },
-                    {
-                        thoughtText: 'This is a cool application (test thought as well)',
-                        username: 'testUser3',
-                    },
-                    {
-                        thoughtText: 'Luke I am your test thought',
-                        username: 'testUser1'
-                    },
-                ],
-                (insertError, insertedItems) => {
-                    if (insertError) {
-                      console.log(insertError);
-                    }
-                    console.log('Inserted items:', insertedItems);
-                  }
-            )
-        }
-    });
+    const thoughtSet = [
+        {
+            thoughtText: 'This is test thought! Hi!',
+            username: 'testUser1'
+        },
+        {
+            thoughtText: 'I like to eat waffles. Also test thought!',
+            username: 'testUser2',
+        },
+        {
+            thoughtText: 'This is a cool application (test thought as well)',
+            username: 'testUser3',
+        },
+        {
+            thoughtText: 'Luke I am your test thought',
+            username: 'testUser1'
+        },
+    ]
+    
+    await User.collection.insertMany(userSet)
+    await Thought.collection.insertMany(thoughtSet)
 
   // Log out the seed data to indicate what should appear in the database
   console.info('Seeding complete! 🌱');
